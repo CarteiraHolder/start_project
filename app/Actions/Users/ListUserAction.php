@@ -14,7 +14,6 @@ class ListUserAction extends ActionList
     private ?string $cpf = null;
     private ?string $email = null;
     private ?string $role = null;
-    private ?string $data = null;
 
     public function  setName(?string $value): self
     {

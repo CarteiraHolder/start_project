@@ -12,11 +12,7 @@ class FindUserByIdController extends Controller
 {
     public function __invoke(Request $request, int $id): Response
     {
-        if (
-            $request->user()->cannot('hasPermission', RoleEnum::admin)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorManager)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorAnalyst)
-        ) {
+        if ($request->user()->cannot('hasPermission', RoleEnum::admin)) {
             return Response(['message' => "Você não tem permissão para essa ação"], 403);
         }
 

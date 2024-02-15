@@ -13,11 +13,7 @@ class ListUserController extends Controller
 
     public function __invoke(Request $request): Response
     {
-        if (
-            $request->user()->cannot('hasPermission', RoleEnum::admin)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorManager)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorAnalyst)
-        ) {
+        if ($request->user()->cannot('hasPermission', RoleEnum::admin)) {
             return Response(['message' => "Você não tem permissão para essa ação"], 403);
         }
 
@@ -26,7 +22,6 @@ class ListUserController extends Controller
             ->setCpf($request->cpf)
             ->setEmail($request->email)
             ->setRole($request->role)
-            ->setData($request->data)
             ->setPage($request->page ?? 1)
             ->setRowsPerPage($request->rowsPerPage ?? 30)
             ->setSortBy($request->sortBy ?? "name")

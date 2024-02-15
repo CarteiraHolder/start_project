@@ -12,11 +12,7 @@ class RegisterUserController extends Controller
 {
     public function __invoke(RegisterUserRequest $request): Response
     {
-        if (
-            $request->user()->cannot('hasPermission', RoleEnum::admin)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorManager)
-            && $request->user()->cannot('hasPermission', RoleEnum::contractorAnalyst)
-        ) {
+        if ($request->user()->cannot('hasPermission', RoleEnum::admin)) {
             return Response(['message' => "Você não tem permissão para essa ação"], 403);
         }
 
@@ -25,9 +21,6 @@ class RegisterUserController extends Controller
             ->setCpf($request->cpf)
             ->setEmail($request->email)
             ->setRole($request->role)
-            ->setFlag($request->flag)
-            ->setIndustry($request->industry)
-            ->setContractor($request->contractor)
             ->handle();
 
         return Response([
