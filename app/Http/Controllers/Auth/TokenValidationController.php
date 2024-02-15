@@ -18,10 +18,6 @@ class TokenValidationController extends Controller
             return response(['status' => 'Unauthorized'], 401);
         }
 
-        if ($request->user()->contractor && $request->user()->contractor->active == false) {
-            return response(['status' => 'Unauthorized'], 401);
-        }
-
         return response(['status' => 'Ok'], 200);
     }
 }

@@ -23,9 +23,9 @@
                             <AppInputText
                                 label="CPF ou Email"
                                 type="text"
-                                name="cpfOrEmail"
-                                id="cpfOrEmail"
-                                v-model="cpfOrEmail"
+                                name="email"
+                                id="email"
+                                v-model="email"
                                 autocomplete="email"
                                 placeholder="Informe o seu CPF ou E-mail"
                             />
@@ -97,8 +97,7 @@ import loading from "../../store/Loading";
 const { level } = useBattery();
 const { coords } = useGeolocation();
 
-const cpfOrEmail = ref("35368251840");
-// const email = ref("fhstefanutto@gmail.com");
+const email = ref("fhstefanutto@gmail.com");
 const password = ref("123123123");
 
 const onSubmit = () => {
@@ -106,7 +105,7 @@ const onSubmit = () => {
 
     setTimeout(() => {
         const formData = new FormData();
-        formData.append("cpfOrEmail", cpfOrEmail.value);
+        formData.append("email", email.value);
         formData.append("password", password.value);
         formData.append("batteryLevel", level.value * 100);
 

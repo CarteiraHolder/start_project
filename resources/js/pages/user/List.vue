@@ -163,23 +163,23 @@ import {
     loading,
     serverOptions,
     serverItemsLength,
-} from "../../../../plugins/EasyDataTable";
-import { TimeoutHelper } from "../../../../helpers/Timeout";
+} from "../../plugins/EasyDataTable";
+import { TimeoutHelper } from "../../helpers/Timeout";
 import {
     download,
     headers as downloadHeaders,
-} from "../../../../helpers/DownloadExcel";
+} from "../../helpers/DownloadExcel";
 import { toast } from "vue3-toastify";
 import { Mask } from "maska";
-import AppTitlePages from "../../../../components/AppTitlePages.vue";
-import AppInputText from "../../../.././components/AppInputText.vue";
-import AppSwitchConfirm from "../../../../components/AppSwitchConfirm.vue";
-import AppBadgesRoles from "../../../../components/AppBadgesRoles.vue";
-import AppComboBoxRole from "../../../../components/ComboBox/AppComboBoxRole.vue";
-import axiosClient from "../../../../plugins/axios";
-import router from "../../../../router";
-import storeUser from "../../../../store/User";
-import { RoleEnum } from "../../../../helpers/RoleEnum";
+import AppTitlePages from "../../components/AppTitlePages.vue";
+import AppInputText from "../.././components/AppInputText.vue";
+import AppSwitchConfirm from "../../components/AppSwitchConfirm.vue";
+import AppBadgesRoles from "../../components/AppBadgesRoles.vue";
+import AppComboBoxRole from "../../components/ComboBox/AppComboBoxRole.vue";
+import axiosClient from "../../plugins/axios";
+import router from "../../router";
+import storeUser from "../../store/User";
+import { RoleEnum } from "../../helpers/RoleEnum";
 
 const maskedCpf = new Mask({ mask: "###.###.###-##" });
 const maskedCnpj = new Mask({ mask: "##.###.###/####-##" });

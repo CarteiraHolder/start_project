@@ -8,22 +8,14 @@ use App\Actions\Users\TokenGenerationUserAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
 use App\Jobs\Logs\LogAuthJob;
-use App\Models\User;
 use Illuminate\Http\Response;
 
 class LoginController extends Controller
 {
     public function __invoke(AuthLoginRequest $request): Response
     {
-
-        $email = (new FindUserByCpfAction)
-            ->setCpf($request->cpfOrEmail)
-            ->handle()
-            ->email
-            ?? $request->cpfOrEmail;
-
         (new AuthUserAction)
-            ->setEmail($email)
+            ->setEmail($request->email)
             ->setPassword($request->password ?? '')
             ->handle();
 
@@ -32,10 +24,6 @@ class LoginController extends Controller
         }
 
         if ($request->user()->active == false) {
-            return response(['message' => 'Seu usuário foi desabilitado'], 403);
-        }
-
-        if ($request->user()->contractor && $request->user()->contractor->active == false) {
             return response(['message' => 'Seu usuário foi desabilitado'], 403);
         }
 

@@ -22,7 +22,7 @@ class AuthLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cpfOrEmail' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
     }

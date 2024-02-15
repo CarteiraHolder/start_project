@@ -4,13 +4,9 @@ namespace App\Actions\Users;
 
 use App\Actions\ActionList;
 use App\Helpers\RemoveAccentsHelper;
-use App\Models\Contractor;
-use App\Models\Flag;
-use App\Models\Industry;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Support\Facades\Auth;
 
 class ListUserAction extends ActionList
 {
@@ -40,11 +36,6 @@ class ListUserAction extends ActionList
         $this->role = $value;
         return $this;
     }
-    public function  setData(?string $value): self
-    {
-        $this->data = $value;
-        return $this;
-    }
 
     public function handle(): Paginator
     {
@@ -54,22 +45,14 @@ class ListUserAction extends ActionList
             'cpf',
             'email',
             'created_at',
-            'flag_id',
-            'contractor_id',
-            'industry_id',
             'profile_photo',
             'active',
         )
             ->with('role')
-            ->with('flag')
-            ->with('industry')
-            ->with('contractor')
             ->when(fn ($query) => $this->whereName($query))
             ->when(fn ($query) => $this->whereCpf($query))
             ->when(fn ($query) => $this->whereEmail($query))
             ->when(fn ($query) => $this->whereRole($query))
-            ->where(fn ($query) => $this->whereData($query))
-            ->where(fn ($query) => $this->whereContractor($query))
             ->orderBy($this->getSortBy(), $this->sortType)
             ->paginate($this->rowsPerPage, ['*'], 'Users', $this->page);
     }
@@ -130,52 +113,5 @@ class ListUserAction extends ActionList
                 $this->role
             )
             : $query;
-    }
-    protected function whereData($query)
-    {
-        return isset($this->data)
-            ? $query->where(
-                Flag::select('name')
-                    ->whereColumn('flags.id', 'users.flag_id')
-                    ->limit(1),
-                'like',
-                "%" . RemoveAccentsHelper::ToClean($this->data) .  "%"
-            )
-            ->orWhere(
-                Industry::select('name')
-                    ->whereColumn('industries.id', 'users.industry_id')
-                    ->limit(1),
-                'like',
-                "%" . RemoveAccentsHelper::ToClean($this->data) .  "%"
-            )
-            ->orWhere(
-                Contractor::select('name')
-                    ->whereColumn('contractors.id', 'users.contractor_id')
-                    ->limit(1),
-                'like',
-                "%" . RemoveAccentsHelper::ToClean($this->data) .  "%"
-            )
-            : $query;
-    }
-    protected function whereContractor($query)
-    {
-        return isset(Auth::user()->contractor->id)
-            ? $query->where(
-                Industry::select('contractor_id')
-                    ->whereColumn('industries.id', 'users.industry_id')
-                    ->limit(1),
-                Auth::user()->contractor->id
-            )
-            ->orWhere(
-                Flag::select('contractor_id')
-                    ->whereColumn('flags.id', 'users.flag_id')
-                    ->limit(1),
-                Auth::user()->contractor->id
-            )
-            ->orWhere(
-                'users.contractor_id',
-                Auth::user()->contractor->id
-            )
-            : $query;;
     }
 }

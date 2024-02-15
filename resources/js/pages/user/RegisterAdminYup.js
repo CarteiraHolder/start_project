@@ -1,8 +1,8 @@
 import * as yup from "yup";
-import { CpfIsInvalid } from "../../../../helpers/CpfIsInvalid";
-import { HasCpfInDB } from "../../../../helpers/HasCpfInDB";
-import { HasEmailInDB } from "../../../../helpers/HasEmailInDB";
-import { RoleEnum } from "../../../../helpers/RoleEnum";
+import { CpfIsInvalid } from "../../helpers/CpfIsInvalid";
+import { HasCpfInDB } from "../../helpers/HasCpfInDB";
+import { HasEmailInDB } from "../../helpers/HasEmailInDB";
+import { RoleEnum } from "../../helpers/RoleEnum";
 
 const RegisterSchema = yup.object().shape({
     name: yup

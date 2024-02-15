@@ -60,7 +60,7 @@ const routes = [
     {
         path: "/usuario/dashboard",
         name: "Dashboard Usuário",
-        components: { default: ContractorDashboard, navigation: UserNavigationTop },
+        components: { default: Dashboard, navigation: UserNavigationTop },
         meta: { requeresAuth: true, role: RolesAccess.user.dashboard, title: 'Dashboard Usuário' },
     },
     {

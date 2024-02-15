@@ -19,8 +19,6 @@ class UserListExport extends ListUserAction
             ->when(fn ($query) => $this->whereCpf($query))
             ->when(fn ($query) => $this->whereEmail($query))
             ->when(fn ($query) => $this->whereRole($query))
-            ->when(fn ($query) => $this->whereData($query))
-            ->when(fn ($query) => $this->whereContractor($query))
             ->get();
 
 

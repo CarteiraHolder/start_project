@@ -16,9 +16,6 @@ class RegisterUserAction
     private ?string $cpf = null;
     private ?string $email = null;
     private ?string $role = null;
-    private ?int $contractor = null;
-    private ?int $flag = null;
-    private ?int $industry = null;
     private ?string $password = null;
 
     public function __construct()
@@ -48,24 +45,7 @@ class RegisterUserAction
         $this->role = $value;
         return $this;
     }
-    public function setContractor(?int $value): self
-    {
-        $this->contractor = isset(Auth::user()->contractor->id)
-            ? Auth::user()->contractor->id
-            : $value;
 
-        return $this;
-    }
-    public function setFlag(?int $value): self
-    {
-        $this->flag = $value;
-        return $this;
-    }
-    public function setIndustry(?int $value): self
-    {
-        $this->industry = $value;
-        return $this;
-    }
     public function setPassword(?string $value): self
     {
         $this->password = bcrypt($value);
@@ -79,10 +59,7 @@ class RegisterUserAction
             $User = new User();
             $User->name = $this->name;
             $User->cpf = $this->cpf;
-            $User->email = $this->email ?? "{$this->cpf}@sem.email";
-            $User->contractor_id = $this->contractor;
-            $User->flag_id = $this->flag;
-            $User->industry_id = $this->industry;
+            $User->email = $this->email;
             $User->password = $this->password;
 
             $User->saveOrFail();
@@ -95,8 +72,7 @@ class RegisterUserAction
                 $Role->saveOrFail();
             }
 
-            if ($User && $User->email != "{$this->cpf}@sem.email")
-                $User->notify(new RegisterUserNotify);
+            $User->notify(new RegisterUserNotify);
 
             return $User;
         });
