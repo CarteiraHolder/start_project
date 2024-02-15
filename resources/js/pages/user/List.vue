@@ -51,7 +51,7 @@
         <div class="mt-8 flow-root">
             <EasyDataTable
                 table-class-name="customize-table"
-                :theme-color="'#081466'"
+                :theme-color="'#1d548d'"
                 :headers="headers"
                 :items="items"
                 buttons-pagination
