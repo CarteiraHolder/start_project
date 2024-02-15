@@ -8,19 +8,7 @@
 
         <Form @submit="onSubmit" :validation-schema="Yup" v-slot="{ errors }">
             <AppFormTemplate :isSlideOver="true">
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="sm:col-span-1 col-span-2">
-                        <div class="mt-2">
-                            <AppComboBoxApiGeolocation
-                                name="apiGeolocation"
-                                id="apiGeolocation"
-                                label="API de Geolocalização"
-                                v-model="apiGeolocation"
-                                :error="errors.apiGeolocation"
-                            />
-                        </div>
-                    </div>
-
+                <div class="grid grid-cols-4 gap-4">
                     <div class="sm:col-span-1 col-span-2">
                         <div class="mt-2">
                             <AppInputText
@@ -37,7 +25,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-4">
                         <div class="relative flex items-start">
                             <div class="flex h-6 items-center">
                                 <input
@@ -84,7 +72,6 @@ import AppTitlePages from "../../components/AppTitlePages.vue";
 import AppButton from "../../components/AppButton.vue";
 import AppInputText from "../../components/AppInputText.vue";
 import AppFormTemplate from "../../components/AppFormTemplate.vue";
-import AppComboBoxApiGeolocation from "../../components/ComboBox/AppComboBoxApiGeolocation.vue";
 import Loading from "../../store/Loading";
 import Yup from "./Yup";
 
