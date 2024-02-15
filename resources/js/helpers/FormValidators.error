@@ -1,0 +1,107 @@
+export function fullname(name) {
+    const nameSplited = name.trim().split(' ');
+    if (nameSplited.length > 1) return ''
+    else {
+        return 'O campo Nome Completo é obrigatório'
+    }
+}
+
+export function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    if (!(re.test(email))) {
+        return 'Por favor insira um endereço de e-mail válido';
+    } else {
+        return '';
+    }
+}
+
+export function minCharacters(string, numberOfCharacters) {
+    if (string.length < numberOfCharacters) {
+        return `Esse campo deve conter pelo menos ${numberOfCharacters} caracteres`
+    } else {
+        return ''
+    }
+}
+
+export function equalPassword(string1, string2) {
+    if (string1 != string2) {
+        return `As senhas digitadas não são iguais`
+    } else {
+        return ''
+    }
+}
+
+export function validateCPF(strCPF) {
+    var Soma;
+    var Resto;
+    let msgError = 'Por favor insira um CPF válido'
+    Soma = 0;
+
+    if (strCPF == "12345654321") return '';
+    if (strCPF == "00000000000") return msgError;
+
+    for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10))) return msgError;
+
+    Soma = 0;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11))) return msgError;
+    return '';
+}
+
+export function validateCNPJ(cnpj) {
+
+    const errorMsg = 'Por favor insira um CNPJ válido'
+
+    cnpj = cnpj.replace(/[^\d]+/g, '');
+    if (cnpj == '') return errorMsg;
+
+    if (cnpj.length != 14)
+        return errorMsg;
+
+    if (cnpj == "00000000000000" ||
+        cnpj == "11111111111111" ||
+        cnpj == "22222222222222" ||
+        cnpj == "33333333333333" ||
+        cnpj == "44444444444444" ||
+        cnpj == "55555555555555" ||
+        cnpj == "66666666666666" ||
+        cnpj == "77777777777777" ||
+        cnpj == "88888888888888" ||
+        cnpj == "99999999999999")
+        return errorMsg;
+
+    let tamanho = cnpj.length - 2
+    let numeros = cnpj.substring(0, tamanho);
+    let digitos = cnpj.substring(tamanho);
+    let soma = 0;
+    let pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+        soma += numeros.charAt(tamanho - i) * pos--;
+        if (pos < 2)
+            pos = 9;
+    }
+    let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado != digitos.charAt(0))
+        return errorMsg;
+    tamanho = tamanho + 1;
+    numeros = cnpj.substring(0, tamanho);
+    soma = 0;
+    pos = tamanho - 7;
+    for (let i = tamanho; i >= 1; i--) {
+        soma += numeros.charAt(tamanho - i) * pos--;
+        if (pos < 2)
+            pos = 9;
+    }
+    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+    if (resultado != digitos.charAt(1))
+        return errorMsg;
+
+    return '';
+}
