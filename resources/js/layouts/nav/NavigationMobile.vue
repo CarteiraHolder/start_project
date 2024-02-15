@@ -62,7 +62,7 @@
                             <div class="flex h-16 shrink-0 items-center">
                                 <img
                                     class="h-6 w-auto"
-                                    src="@/assets/image/logo.png"
+                                    src="@/assets/image/logo.svg"
                                     alt="Logo"
                                 />
                             </div>

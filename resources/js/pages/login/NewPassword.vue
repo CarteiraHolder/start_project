@@ -6,7 +6,7 @@
             <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                 <img
                     class="mx-auto h-10 w-auto"
-                    src="@/assets/image/logo.png"
+                    src="@/assets/image/logo.svg"
                     alt="Logo"
                 />
                 <div class="sm:mx-auto sm:w-full sm:max-w-md">

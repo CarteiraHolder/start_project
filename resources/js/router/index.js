@@ -10,7 +10,7 @@ const router = createRouter({
     routes,
 });
 
-const DEFAULT_TITLE = 'Laravel';
+const DEFAULT_TITLE = 'Carteira Holder';
 router.beforeEach(async (to, from, next) => {
     document.title = (DEFAULT_TITLE + " - " + to.meta.title) || DEFAULT_TITLE;
 
