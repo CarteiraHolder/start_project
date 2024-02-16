@@ -123,19 +123,7 @@
                             ></ArrowsRightLeftIcon>
                         </button>
 
-                        <router-link
-                            v-if="
-                                storeUser.state.user.role == RoleEnum.admin &&
-                                (role.role == RoleEnum.admin ||
-                                    role.role == RoleEnum.contractorManager ||
-                                    role.role == RoleEnum.contractorAnalyst ||
-                                    role.role ==
-                                        RoleEnum.contractorCoordinator ||
-                                    role.role == RoleEnum.contractorLeader ||
-                                    role.role == RoleEnum.contractorPromoter)
-                            "
-                            :to="`/usuario/atualizar/${id}`"
-                        >
+                        <router-link :to="`/usuario/atualizar/${id}`">
                             <PencilSquareIcon
                                 v-tippy="'Editar'"
                                 class="text-white bg-primary-light p-1 rounded w-6 h-6 mr-1"

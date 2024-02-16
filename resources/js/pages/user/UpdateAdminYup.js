@@ -26,20 +26,6 @@ const RegisterSchema = yup.object().shape({
             "O campo permissão é obrigatório",
             (role) => role?.id !== undefined
         ),
-    contractor: yup
-        .object()
-        .nullable("O campo contratante é obrigatório")
-        .when(['role'], {
-            is: (role) => (role?.id !== RoleEnum.admin && role?.id !== undefined),
-            then: schema => schema
-                .test(
-                    "test-invalid-contractor",
-                    "O campo contratante é obrigatório",
-                    (contractor) => contractor?.id !== undefined,
-                ),
-            otherwise: schema => schema.optional(),
-        }),
-
 });
 
 export default RegisterSchema;

@@ -36,9 +36,6 @@ class FindUserByIdController extends Controller
                 'profile_photo',
                 'active',
                 'role',
-                'flag',
-                'industry',
-                'contractor',
             ])
         ]);
     }

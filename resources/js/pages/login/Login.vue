@@ -5,7 +5,7 @@
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
             <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                 <img
-                    class="mx-auto h-10 w-auto"
+                    class="mx-auto h-18 w-auto"
                     src="@/assets/image/logo.svg"
                     alt="Logo"
                 />
