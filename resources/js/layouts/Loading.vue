@@ -5,7 +5,7 @@
                 <SelfBuildingSquareSpinner
                     :animation-duration="4000"
                     :size="100"
-                    :color="'#081466'"
+                    :color="'#1d548d'"
                 />
             </div>
         </div>

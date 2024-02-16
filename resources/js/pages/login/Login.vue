@@ -65,8 +65,9 @@
                             <router-link
                                 to="/esqueci-minha-senha"
                                 class="font-semibold text-primary hover:text-primary-light"
-                                >Esqueceu sua senha?</router-link
                             >
+                                Esqueceu sua senha?
+                            </router-link>
                         </div>
                     </div>
 
@@ -76,6 +77,16 @@
                         </AppButton>
                     </div>
                 </Form>
+                <p class="mt-10 text-center text-sm text-gray-500">
+                    Ainda não tem conta?
+                    {{ " " }}
+                    <router-link
+                        to="#"
+                        class="font-semibold text-primary hover:text-primary-light"
+                    >
+                        Cadastre-se
+                    </router-link>
+                </p>
             </div>
         </div>
     </div>

@@ -158,13 +158,6 @@ const onLoadgin = () => {
             });
 
             cards.value.push({
-                name: `Geolocalização`,
-                initials: "API",
-                label: data.settings.api_geolocation,
-                bgColor: "bg-secondary",
-            });
-
-            cards.value.push({
                 name: `Exclusão de Logs (${data.settings.clear_log_user_actions} dias)`,
                 initials: "CRON",
                 label: `Mais antigos que ${date.toLocaleDateString()}`,
