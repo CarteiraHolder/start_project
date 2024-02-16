@@ -3,6 +3,7 @@ import { RolesAccess } from '../helpers/RolesAccess.js'
 import Login from "@/pages/login/Login.vue";
 import NewPassword from "@/pages/login/NewPassword.vue";
 import ForgotPassword from "@/pages/login/ForgotPassword.vue";
+import LoginRegister from "@/pages/login/Register.vue";
 
 // AUTH
 import Dashboard from "@/pages/Dashboard.vue"
@@ -45,6 +46,12 @@ const routes = [
         name: "Esqueci minha senha",
         component: ForgotPassword,
         meta: { requeresAuth: false, title: 'Esqueci minha senha' },
+    },
+    {
+        path: "/cadastre-se",
+        name: "Cadastre-se",
+        component: LoginRegister,
+        meta: { requeresAuth: false, title: 'Cadastre-se' },
     },
     // NÃO LOGADA
 

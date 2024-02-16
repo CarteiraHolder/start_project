@@ -24,7 +24,8 @@ class RegisterUserRequest extends FormRequest
         return [
             "name" => "required|max:128",
             "cpf" => "required|cpf|unique:users,cpf",
-            "email" =>  $this->email ? "email|unique:users,email" : '',
+            "email" => "email|unique:users,email",
+            "acceptTheTerm" => "required",
         ];
     }
 }

@@ -114,19 +114,9 @@ const onSubmit = () => {
                 toastId: `/User/New/Password`,
                 transition: toast.TRANSITIONS.BOUNCE,
                 dangerouslyHTMLString: true,
-                autoClose: 1000,
-                onClose: () => {
-                    loading.state.loading = true;
-                    setTimeout(() => {
-                        loading.state.loading = false;
-                        router.push({ path: "/" });
-                    }, 1000);
-                },
             });
         })
-        .catch((error) => {
-            console.log(error);
-        })
+        .catch((error) => {})
         .finally(() => (loading.state.loading = false));
 };
 </script>

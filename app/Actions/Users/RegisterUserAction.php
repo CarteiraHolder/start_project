@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Notifications\RegisterUserNotify;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\Calculation\Logical\Boolean;
 
 class RegisterUserAction
 {
@@ -17,6 +18,7 @@ class RegisterUserAction
     private ?string $email = null;
     private ?string $role = null;
     private ?string $password = null;
+    private bool $notify = true;
 
     public function __construct()
     {
@@ -52,6 +54,12 @@ class RegisterUserAction
         return $this;
     }
 
+    public function setNotify(bool $value): self
+    {
+        $this->notify = $value;
+        return $this;
+    }
+
     public function handle(): User
     {
         return DB::transaction(function () {
@@ -64,15 +72,16 @@ class RegisterUserAction
 
             $User->saveOrFail();
 
-            if ($this->role != RoleEnum::admin) {
-                $Role = new Role();
-                $Role->user_id = $User->id;
-                $Role->role = $this->role;
+            // if ($this->role != RoleEnum::admin) {
+            $Role = new Role();
+            $Role->user_id = $User->id;
+            $Role->role = $this->role;
 
-                $Role->saveOrFail();
-            }
+            $Role->saveOrFail();
+            // }
 
-            $User->notify(new RegisterUserNotify);
+            if ($this->notify)
+                $User->notify(new RegisterUserNotify);
 
             return $User;
         });

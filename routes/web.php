@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', fn () =>  view('app'))->name('login');
 Route::get('/nova-senha/{hash}', fn () =>  view('app'))->name('nova-senha@vue');
 Route::get('/esqueci-minha-senha', fn () =>  view('app'))->name('esqueci-minha-senha@vue');
+Route::get('/cadastre-se', fn () =>  view('app'))->name('cadastre-se@vue');
 // NO AUTH
 
 Route::get('/dashboard', fn () => view('app'))->name('dashboard@vue');

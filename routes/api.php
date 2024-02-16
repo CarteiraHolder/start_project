@@ -27,6 +27,7 @@ use App\Http\Controllers\User\ListUserController;
 use App\Http\Controllers\User\LoggedUserController;
 use App\Http\Controllers\User\LoginBecomeUserController;
 use App\Http\Controllers\User\NewPasswordUserController;
+use App\Http\Controllers\User\RegisterUserByLoginController;
 use App\Http\Controllers\User\RegisterUserController;
 use App\Http\Controllers\User\TestPasswordUserController;
 use App\Http\Controllers\User\UpdateUserController;
@@ -61,7 +62,6 @@ Route::prefix('User')->group(function () {
     Route::post('Export', ExportListUserController::class)->middleware('auth:sanctum');
     Route::get('Status/Change/{id}', ChangeStatusUserController::class)->middleware('auth:sanctum');
     Route::get('Has/Cpf/{cpf}', HasUserByCpfController::class)->middleware('auth:sanctum');
-    Route::get('Has/Email/{email}', HasUserByEmailController::class)->middleware('auth:sanctum');
     Route::post('Register', RegisterUserController::class)->middleware('auth:sanctum');
     Route::post('Update', UpdateUserController::class)->middleware('auth:sanctum');
     Route::post('Prifile/Update', UpdateUserProfileController::class)->middleware('auth:sanctum');
@@ -75,6 +75,8 @@ Route::prefix('User')->group(function () {
     Route::get('Hash/{hase}', FindUserByHashController::class);
     Route::post('New/Password', NewPasswordUserController::class);
     Route::post('Forgot/Password', ForgotPasswordUserController::class);
+    Route::post('Login/Register', RegisterUserByLoginController::class);
+    Route::get('Has/Email/{email}', HasUserByEmailController::class);
 });
 
 

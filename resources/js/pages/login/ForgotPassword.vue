@@ -35,14 +35,14 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between pt-4">
-                        <div class="text-sm leading-6">
+                    <div class="flex items-center justify-between pt-4 mt-4">
+                        <!-- <div class="text-sm leading-6">
                             <router-link
                                 to="/"
                                 class="font-semibold text-primary hover:text-primary-light"
                                 >Voltar para a página login</router-link
                             >
-                        </div>
+                        </div> -->
                     </div>
 
                     <div>
@@ -51,6 +51,18 @@
                         </AppButton>
                     </div>
                 </Form>
+                <p class="mt-10 text-center text-sm text-gray-500">
+                    Esqueça,
+                    {{ " " }}
+                    <router-link
+                        to="/"
+                        class="font-semibold text-primary hover:text-primary-light"
+                    >
+                        envie-me de volta
+                    </router-link>
+                    {{ " " }}
+                    para a tela de login.
+                </p>
             </div>
         </div>
     </div>
