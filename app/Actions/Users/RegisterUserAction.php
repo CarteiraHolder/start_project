@@ -39,7 +39,7 @@ class RegisterUserAction
     }
     public function setEmail(?string $value): self
     {
-        $this->email = $value;
+        $this->email = strtolower($value);
         return $this;
     }
     public function setRole(?string $value): self
@@ -72,13 +72,11 @@ class RegisterUserAction
 
             $User->saveOrFail();
 
-            // if ($this->role != RoleEnum::admin) {
             $Role = new Role();
             $Role->user_id = $User->id;
             $Role->role = $this->role;
 
             $Role->saveOrFail();
-            // }
 
             if ($this->notify)
                 $User->notify(new RegisterUserNotify);

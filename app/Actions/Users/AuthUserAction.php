@@ -12,7 +12,7 @@ class AuthUserAction
 
     public function setEmail(string $value): self
     {
-        $this->email = $value;
+        $this->email = strtolower($value);
         return $this;
     }
     public function setPassword(string $value): self

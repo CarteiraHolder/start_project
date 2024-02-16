@@ -37,7 +37,7 @@
                         v-model="email"
                     />
                 </div>
-                <div class="sm:col-span-3 mt-2">
+                <div class="sm:col-span-3 sm:mt-0 mt-2">
                     <AppComboBoxRole
                         name="role"
                         label="Permissão"
@@ -80,7 +80,7 @@
                                     {{ name }}
                                 </div>
                                 <div class="text-gray-500">
-                                    {{ maskedCpf.masked(cpf) }}
+                                    {{ cpf ? maskedCpf.masked(cpf) : "" }}
                                 </div>
                                 <div class="text-gray-500">
                                     {{ email }}

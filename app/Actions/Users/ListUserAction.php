@@ -74,7 +74,7 @@ class ListUserAction extends ActionList
     // WHERES
     protected function whereName($query)
     {
-        return isset($this->name)
+        return isset($this->name) && $this->name != ''
             ? $query->where(
                 "name",
                 'like',
@@ -84,7 +84,7 @@ class ListUserAction extends ActionList
     }
     protected function whereCpf($query)
     {
-        return isset($this->cpf)
+        return isset($this->cpf) && $this->cpf != ''
             ? $query->where(
                 "cpf",
                 'like',
@@ -94,7 +94,7 @@ class ListUserAction extends ActionList
     }
     protected function whereEmail($query)
     {
-        return isset($this->email)
+        return isset($this->email) && $this->email != ''
             ? $query->where(
                 "email",
                 'like',
@@ -104,7 +104,7 @@ class ListUserAction extends ActionList
     }
     protected function whereRole($query)
     {
-        return isset($this->role)
+        return isset($this->role) && $this->role != ''
             ? $query->where(
                 Role::select('role')
                     ->whereColumn('roles.user_id', 'users.id')
